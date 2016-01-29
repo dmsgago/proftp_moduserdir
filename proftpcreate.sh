@@ -14,5 +14,5 @@ num_argumentos()
 
 num_argumentos $#
 useradd $1 -m -s /bin/bash -p $(mkpasswd usuario)
-sed 's%</VirtualHost>%        Alias \"/matematicas\" \"/home/$1/ftp/\"\n        <Directory /home/$1/ftp>\n                Options Indexes FollowSymLinks\n       AllowOverride None\n                Require all granted\n        </Directory>\n</VirtualHost>%g' /etc/apache2/sites-available/iesgn.conf
+sed -i 's%</VirtualHost>%        Alias \"/'"$1"'\" \"/home/'"$1"'/ftp/\"\n        <Directory /home/'"$1"'/ftp>\n                Options Indexes FollowSymLinks\n       AllowOverride None\n                Require all granted\n        </Directory>\n</VirtualHost>%g' /etc/apache2/sites-available/iesgn.conf
 systemctl restart apache2
